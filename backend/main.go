@@ -58,7 +58,7 @@ func main() {
 
 	// CORS Middleware
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"http://localhost:3000", "https://todo-list-go-next-neon.vercel.app/"},
+		AllowOrigins: []string{"http://localhost:3000", "https://todo-list-go-next-neon.vercel.app"},
 		AllowMethods: []string{http.MethodGet, http.MethodPost, http.MethodPut, http.MethodDelete},
 		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
 	}))
