@@ -2,10 +2,9 @@ package config
 
 import (
 	"fmt"
+	"github.com/joho/godotenv"
 	"log"
 	"os"
-
-	"github.com/joho/godotenv"
 )
 
 type Config struct {
@@ -14,9 +13,11 @@ type Config struct {
 }
 
 func LoadConfig() *Config {
+	// Load .env file if it exists (for local development)
+	// In production (Railway), environment variables are provided directly
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("❌ Error loading .env file:", err)
+		log.Println("⚠️  No .env file found (this is normal in production)")
 	}
 
 	dbURL := os.Getenv("DATABASE_URL")
@@ -32,7 +33,6 @@ func LoadConfig() *Config {
 	}
 
 	fmt.Println("✅ Configuration loaded")
-
 	return &Config{
 		DatabaseURL: dbURL,
 		Port:        port,
